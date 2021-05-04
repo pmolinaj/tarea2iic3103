@@ -30,7 +30,7 @@ class ArtistList(APIView):
 			'id':id_encode,
 			'name':request.data['name'],
 			'age':request.data['age'],
-			'albums':'https://tarea2iic3103.herokuapp.com/artists'+id_encode+'/albums',
+			'albums':'https://tarea2iic3103.herokuapp.com/artists/'+id_encode+'/albums',
 			'tracks':'https://tarea2iic3103.herokuapp.com/artists/'+id_encode+'/tracks',
 			'self_url':'https://tarea2iic3103.herokuapp.com/artists/'+id_encode,
 		}
