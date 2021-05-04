@@ -4,7 +4,7 @@ from API import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('artists/',views.ArtistList.as_view()),
+    path('artists',views.ArtistList.as_view()),
     path('artists/<str:pk>/', views.ArtistDetail.as_view()),
     path('artists/<str:pk>/albums', views.AlbumList.as_view()),
     path('artists/<str:pk>/tracks', views.ArtistTrackList.as_view()), 
