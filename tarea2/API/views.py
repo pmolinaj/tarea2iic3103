@@ -21,7 +21,7 @@ class ArtistList(APIView):
 
 
 	def post(self, request, format=None):
-		if len(request.data.keys()==0):
+		if len(request.data.keys())==0:
 			return Response(status=status.HTTP_400_CONFLICT)
 		try:
 			id_encode = request.data['name'].encode('utf-8')
