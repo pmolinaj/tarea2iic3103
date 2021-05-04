@@ -21,8 +21,18 @@ class ArtistList(APIView):
 
 
 	def post(self, request, format=None):
+		print(len(request.data.keys()))
 		if len(request.data.keys())==0:
-			return Response(status=status.HTTP_400_CONFLICT)
+			print('Entré')
+			return Response({},status=status.HTTP_400_BAD_REQUEST)
+		datos_request = list(request.data.keys())
+		if len(datos_request) != 2:
+			return Response({},status=status.HTTP_400_BAD_REQUEST)
+		if datos_request[0]!='name' or datos_request[1]!='age':
+			return Response({},status=status.HTTP_400_BAD_REQUEST)
+		if type(request.data['name']) != str or type(request.data['age'])!= int:
+			return Response({},status=status.HTTP_400_BAD_REQUEST)	
+
 		try:
 			id_encode = request.data['name'].encode('utf-8')
 			id_encode = b64encode(id_encode)
