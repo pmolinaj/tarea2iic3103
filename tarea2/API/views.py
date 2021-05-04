@@ -129,9 +129,9 @@ class AlbumList(APIView):
 			'artist_id':pk,	
 			'name':request.data['name'],
 			'genre':request.data['genre'],
-			'artist':'https://tarea2iic3103.herokuapp.com/artists/'+pk+,
+			'artist':'https://tarea2iic3103.herokuapp.com/artists/'+pk,
 			'tracks':'https://tarea2iic3103.herokuapp.com/albums/'+id_encode+'/tracks',
-			'self_url':'https://tarea2iic3103.herokuapp.com/albums/'+id_encode,
+			'self_url':'https://tarea2iic3103.herokuapp.com/albums/'+id_encode
 		}
 		serializer = AlbumSerializer(data=nueva_data)
 		if serializer.is_valid():
