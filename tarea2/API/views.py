@@ -30,9 +30,9 @@ class ArtistList(APIView):
 			'id':id_encode,
 			'name':request.data['name'],
 			'age':request.data['age'],
-			'albums':'http://127.0.0.1:8000/artists/'+id_encode+'/albums',
-			'tracks':'http://127.0.0.1:8000/artists/'+id_encode+'/tracks',
-			'self_url':'http://127.0.0.1:8000/artists/'+id_encode,
+			'albums':'https://tarea2iic3103.herokuapp.com/artists'+id_encode+'/albums',
+			'tracks':'https://tarea2iic3103.herokuapp.com/artists/'+id_encode+'/tracks',
+			'self_url':'https://tarea2iic3103.herokuapp.com/artists/'+id_encode,
 		}
 		serializer = ArtistSerializer(data=nueva_data)
 		if serializer.is_valid():
@@ -129,9 +129,9 @@ class AlbumList(APIView):
 			'artist_id':pk,	
 			'name':request.data['name'],
 			'genre':request.data['genre'],
-			'artist':'http://127.0.0.1:8000/artists/'+pk+'/',
-			'tracks':'http://127.0.0.1:8000/albums/'+id_encode+'/tracks',
-			'self_url':'http://127.0.0.1:8000/albums/'+id_encode,
+			'artist':'https://tarea2iic3103.herokuapp.com/artists/'+pk+'/',
+			'tracks':'https://tarea2iic3103.herokuapp.com/albums/'+id_encode+'/tracks',
+			'self_url':'https://tarea2iic3103.herokuapp.com/albums/'+id_encode,
 		}
 		serializer = AlbumSerializer(data=nueva_data)
 		if serializer.is_valid():
@@ -238,9 +238,9 @@ class TrackList(APIView):
 			'name':request.data['name'],
 			'duration':request.data['duration'],
 			'times_played':0,
-			'artist':'http://127.0.0.1:8000/artists/'+id_artista,
-			'album':'http://127.0.0.1:8000/albums/'+pk,
-			'self_url':'http://127.0.0.1:8000/tracks/'+id_encode,
+			'artist':'https://tarea2iic3103.herokuapp.com/artists/'+id_artista,
+			'album':'https://tarea2iic3103.herokuapp.com/albums/'+pk,
+			'self_url':'https://tarea2iic3103.herokuapp.com/tracks/'+id_encode,
 		}
 		serializer = TrackSerializer(data=nueva_data)
 		print(serializer)
