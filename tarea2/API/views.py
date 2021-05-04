@@ -21,27 +21,29 @@ class ArtistList(APIView):
 
 
 	def post(self, request, format=None):
-		id_encode = request.data['name'].encode('utf-8')
-		id_encode = b64encode(id_encode)
-		id_encode = id_encode.decode()
-		if len(id_encode)>22:
-			id_encode = id_encode[:22]
-		nueva_data = {
-			'id':id_encode,
-			'name':request.data['name'],
-			'age':request.data['age'],
-			'albums':'https://tarea2iic3103.herokuapp.com/artists/'+id_encode+'/albums',
-			'tracks':'https://tarea2iic3103.herokuapp.com/artists/'+id_encode+'/tracks',
-			'self_url':'https://tarea2iic3103.herokuapp.com/artists/'+id_encode,
-		}
-		serializer = ArtistSerializer(data=nueva_data)
-		if serializer.is_valid():
-			serializer.save()
-			return Response(serializer.data, status=status.HTTP_201_CREATED)
-		for artista in Artist.objects.all():#Se levanta erorr si es que el artista ya existía.
-			if id_encode == artista.id:
-				return Response(serializer.errors, status=status.HTTP_409_CONFLICT)
-		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+		try:
+			id_encode = request.data['name'].encode('utf-8')
+			id_encode = b64encode(id_encode)
+			id_encode = id_encode.decode()
+			if len(id_encode)>22:
+				id_encode = id_encode[:22]
+			nueva_data = {
+				'id':id_encode,
+				'name':request.data['name'],
+				'age':request.data['age'],
+				'albums':'https://tarea2iic3103.herokuapp.com/artists/'+id_encode+'/albums',
+				'tracks':'https://tarea2iic3103.herokuapp.com/artists/'+id_encode+'/tracks',
+				'self_url':'https://tarea2iic3103.herokuapp.com/artists/'+id_encode,
+			}
+			serializer = ArtistSerializer(data=nueva_data)
+			if serializer.is_valid():
+				serializer.save()
+				return Response(serializer.data, status=status.HTTP_201_CREATED)
+			for artista in Artist.objects.all():#Se levanta erorr si es que el artista ya existía.
+				if id_encode == artista.id:
+					return Response(serializer.errors, status=status.HTTP_409_CONFLICT)
+		except:
+			return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ArtistDetail(APIView):
 
